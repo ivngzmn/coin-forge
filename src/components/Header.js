@@ -1,74 +1,74 @@
 import {
-  AppBar,
-  Container,
-  MenuItem,
-  Select,
-  Toolbar,
-  Typography,
-} from "@material-ui/core";
+    AppBar,
+    Container,
+    MenuItem,
+    Select,
+    Toolbar,
+    Typography,
+} from '@material-ui/core';
 import {
-  createTheme,
-  makeStyles,
-  ThemeProvider,
-} from "@material-ui/core/styles";
-import { useHistory } from "react-router-dom";
-import { CryptoState } from "../CryptoContext";
+    createTheme,
+    makeStyles,
+    ThemeProvider,
+} from '@material-ui/core/styles';
+import { useHistory } from 'react-router-dom';
+import { CryptoState } from '../CryptoContext';
 
 const useStyles = makeStyles((theme) => ({
-  title: {
-    flex: 1,
-    color: "white",
-    fontFamily: "BasementBlack",
-    fontWeight: "black",
-    cursor: "pointer",
-  },
+    title: {
+        flex: 1,
+        color: 'white',
+        fontFamily: 'BasementBlack',
+        fontWeight: 'black',
+        cursor: 'pointer',
+    },
 }));
 
 const darkTheme = createTheme({
-  palette: {
-    primary: {
-      main: "#fff",
+    palette: {
+        primary: {
+            main: '#fff',
+        },
+        type: 'dark',
     },
-    type: "dark",
-  },
 });
 
 function Header() {
-  const classes = useStyles();
-  const { currency, setCurrency } = CryptoState();
-  const history = useHistory();
+    const classes = useStyles();
+    const { currency, setCurrency } = CryptoState();
+    const history = useHistory();
 
-  return (
-    <ThemeProvider theme={darkTheme}>
-      <AppBar color="transparent" position="static">
-        <Container>
-          <Toolbar>
-            <Typography
-              onClick={() => history.push(`/`)}
-              variant="h6"
-              className={classes.title}
-            >
-              Coin Forge
-            </Typography>
-            {/* <Button color="inherit">Login</Button> */}
-            <Select
-              variant="outlined"
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={currency}
-              style={{ width: 100, height: 40, marginLeft: 15 }}
-              onChange={(e) => setCurrency(e.target.value)}
-            >
-              <MenuItem value={"USD"}>USD</MenuItem>
-              <MenuItem value={"JPY"}>JPY</MenuItem>
-              <MenuItem value={"EUR"}>EUR</MenuItem>
-              <MenuItem value={"CNY"}>CNY</MenuItem>
-            </Select>
-          </Toolbar>
-        </Container>
-      </AppBar>
-    </ThemeProvider>
-  );
+    return (
+        <ThemeProvider theme={darkTheme}>
+            <AppBar color='transparent' position='static'>
+                <Container>
+                    <Toolbar>
+                        <Typography
+                            onClick={() => history.push(`/`)}
+                            variant='h6'
+                            className={classes.title}
+                        >
+                            Coin Forge
+                        </Typography>
+
+                        <Select
+                            variant='outlined'
+                            labelId='demo-simple-select-label'
+                            id='demo-simple-select'
+                            value={currency}
+                            style={{ width: 100, height: 40, marginLeft: 15 }}
+                            onChange={(e) => setCurrency(e.target.value)}
+                        >
+                            <MenuItem value={'USD'}>USD</MenuItem>
+                            <MenuItem value={'JPY'}>JPY</MenuItem>
+                            <MenuItem value={'EUR'}>EUR</MenuItem>
+                            <MenuItem value={'CNY'}>CNY</MenuItem>
+                        </Select>
+                    </Toolbar>
+                </Container>
+            </AppBar>
+        </ThemeProvider>
+    );
 }
 
 export default Header;
